@@ -23,4 +23,24 @@ data.forEach((dataRow) => {
     cell.text(val);
     }
     );
-});
+})
+
+//11.5.3 Add Filters
+function handleClick() {
+    let date = d3.select("#datetime").property("value");
+    let filteredData = tableData;
+
+//11.5.4 Use the "If" Statement
+if (date) {
+    filteredData = filteredData.filter(row => row.datetime === date);
+}
+
+// Call Build the Filtered Table
+    buildTable(filteredData);
+}
+
+// Listen to Event (Click)
+d3.selectAll("#filter-btn").on("click", handleClick);
+
+//Build Final Table
+buildTable(tableData);  
